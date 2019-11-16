@@ -1,0 +1,352 @@
+<% include header_1.ejs %>
+        <!-- //navbar ends here -->
+		<!-- //navbar ends here -->
+		<!-- banner -->
+        <div class="banner-bg-inner">
+            <!-- banner-text -->
+            <div class="banner-text-inner">
+                <div class="container">
+                    <h2 class="title-inner">
+                        world of reading
+                    </h2>
+
+                </div>
+            </div>
+            <!-- //banner-text -->
+        </div>
+		<!-- //banner -->
+		<!-- breadcrumbs -->
+		<div class="crumbs text-center">
+			<div class="container">
+				<div class="row">
+					<ul class="btn-group btn-breadcrumb bc-list">
+						<li class="btn btn1">
+							<a href="index.html">
+								<i class="glyphicon glyphicon-home"></i>
+							</a>
+						</li>
+						<li class="btn btn2">
+							<a href="/shop.html">Product Catalogue</a>
+						</li>
+						<!-- <li class="btn btn3">
+							<a href="/shop.html/single_product.html">Single product</a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--//breadcrumbs ends here-->
+		<!-- Single -->
+		<div class="innerf-pages section">
+			<div class="container">
+				<div class="col-md-4 single-right-left ">
+					<div class="grid images_3_of_2">
+						<div class="flexslider1">
+							<ul class="slides">
+								<li data-thumb="/images/s1.jpg">
+									<div class="thumb-image">
+										<img src="/images/lib8.jpg" data-imagezoom="true" alt=" " class="img-responsive"> </div>
+								</li>
+								<!-- <li data-thumb="images/s2.jpg">
+									<div class="thumb-image">
+										<img src="/images/s2.jpg" data-imagezoom="true" alt=" " class="img-responsive"> </div>
+								</li>
+								<li data-thumb="images/s3.png">
+									<div class="thumb-image">
+										<img src="/images/s3.png" data-imagezoom="true" alt=" " class="img-responsive"> </div>
+								</li> -->
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-md-8 single-right-left simpleCart_shelfItem">
+						<% if (book.length > 0) { %>
+							<% book.forEach((content) => { %>
+								<!-- <h4><%= book.title %></h4> -->
+								<!-- <p><%= book.author %></p> -->
+								<!-- <p><%= book.language %></p> -->
+							<h3><%= content.title %>
+								<span><%= content.product_type %></span>
+						</h3>
+						<p>by
+							<a href="#"><%= content.author %></a>
+						</p>
+					<div class="caption">
+
+						<!-- rating rosewine -->
+						<% if(content.rating ===5){ %>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+						<% } %> 
+						<% if(content.rating ===4){ %>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star gray-star" aria-hidden="true"></span>
+						<% } %> 
+						<% if(content.rating ===3){ %>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star gray-star" aria-hidden="true"></span>
+							<span class="fa fa-star gray-star" aria-hidden="true"></span>
+						<% } %> 
+						<% if(content.rating ===2){ %>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>	
+							<span class="fa fa-star gray-star" aria-hidden="true"></span>
+							<span class="fa fa-star gray-star" aria-hidden="true"></span>
+							<span class="fa fa-star gray-star" aria-hidden="true"></span>																	
+						<% } %> 
+						<% if(content.rating ===1){ %>
+							<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+							<span class="fa fa-star gray-star" aria-hidden="true"></span>
+							<span class="fa fa-star gray-star" aria-hidden="true"></span>
+							<span class="fa fa-star gray-star" aria-hidden="true"></span>
+							<span class="fa fa-star gray-star" aria-hidden="true"></span>																	
+						<% } %> 
+						
+					
+						<!-- downloadbutton -->
+							
+						<form action="/shop.html/download_book/<%= content.ISBN13%>" method="POST">
+							<button  class="icon"  style="font-size: 0.5rem" >
+							<!-- <button type="buttonssss" class="icon" onclick="onGetCardNonce(event)" style="font-size: 0.5rem">Pay $1.00</button> -->
+								
+								<div class="cloud">
+									<div class="puff puff-1"></div>
+									<div class="puff puff-2"></div>
+									<div class="puff puff-3"></div>
+									<div class="puff puff-4"></div>
+									<div class="cloud-core"></div>
+									<div class="check"></div>
+									<div class="arrow">
+										<div class="arrow-stem">
+											<div class="arrow-l-tip"></div>
+											<div class="arrow-r-tip"></div>
+										</div>
+									</div>
+								</div>
+								<div class="preload">
+									<div class="drop drop-1"></div>
+									<div class="drop drop-2"></div>
+									<div class="drop drop-3"></div>
+								</div>
+								<!-- <div class="progress"></div> -->
+							</button>
+						</form>
+							<!-- end of download button -->
+						<div class="clearfix"> </div>
+						<h6>$<%= content.unit_price %>.00</h6>
+						
+					</div>
+
+					<div class="desc_single">
+						<h5>Description</h5>
+						<p><%= content.description %></p>
+					</div>
+					<div class="occasional">
+						<h5>Specifications</h5>
+						<ul class="single_specific">
+							<li>
+								<span>language :</span> <%= content.language %></li>
+							<li>
+								<span>format :</span> <%= content.type %></li>
+							<li>
+								<span>publisher :</span> <%= content.publisher %></li>
+							<li>
+								<span>price :</span> $<%= content.unit_price %></li>
+							<li>
+								<span>pages :</span> <%= content.file_size %></li>
+						</ul>
+
+					</div>
+				
+					<div class="clearfix"></div>
+					<div class="description">
+				<% }) %>
+				<% } %> 
+							
+						</div>
+					</div>				
+					</form>
+			
+									
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+
+		<!-- /new_arrivals -->
+		<div class="section singlep_btm">
+			<div class="container">
+				<div class="new_arrivals">
+					<h4 class="rad-txt">
+						<span class="abtxt1">New</span>
+						<span class="abtext"> Release</span>
+					</h4>
+					<!-- row3 -->
+					<% if (release.length > 0) { %>
+						<% release.forEach((book) => { %>
+							<div class="col-lg-3 product-men">
+										<div class="product-chr-info chr">
+												<div class="thumbnail">
+													<a href="/shop.html/<%= book.ISBN13%>">
+														<img src="/images/lib8.jpg" alt="">
+													</a>
+												</div>
+												<div class="caption">
+														<h4><%= book.title %></h4>
+														<p><%= book.author %></p>
+														<p><%= book.language %></p>
+														<p>
+														<% if(book.rating ===5){ %>
+																	<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+																	<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+																	<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+																	<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+																	<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+														<% } %> 
+														<% if(book.rating ===4){ %>
+															<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+															<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+															<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+															<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+															<span class="fa fa-star gray-star" aria-hidden="true"></span>
+														<% } %> 
+														<% if(book.rating ===3){ %>
+															<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+															<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+															<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+															<span class="fa fa-star gray-star" aria-hidden="true"></span>
+															<span class="fa fa-star gray-star" aria-hidden="true"></span>
+														<% } %> 
+														<% if(book.rating ===2){ %>
+															<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+															<span class="fa fa-star yellow-star" aria-hidden="true"></span>	
+															<span class="fa fa-star gray-star" aria-hidden="true"></span>
+															<span class="fa fa-star gray-star" aria-hidden="true"></span>
+															<span class="fa fa-star gray-star" aria-hidden="true"></span>																	
+														<% } %> 
+														<% if(book.rating ===1){ %>
+															<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+															<span class="fa fa-star gray-star" aria-hidden="true"></span>
+															<span class="fa fa-star gray-star" aria-hidden="true"></span>
+															<span class="fa fa-star gray-star" aria-hidden="true"></span>
+															<span class="fa fa-star gray-star" aria-hidden="true"></span>																	
+														<% } %> 
+														</p>									
+												</a>
+										</div>
+								</div>
+							</div>
+						<% }) %>
+					<% } %> 
+					<!-- <div class="clearfix"></div> -->
+				</div>
+				<!--//new_arrivals-->
+				<div class="clearfix"></div>
+				
+			</div>
+		</div>
+		<!--// Single -->
+					<!-- newsletter -->
+					<div class="subscribe-main section-w3layouts text-center">
+							<h4 class="rad-txt">
+									<span class="abtxt1">keep yourself</span>
+									<span class="abtext">updated</span>
+							</h4>
+							<h5>subscribe to our newsletter to stay up-to-date with our projects.</h5>
+							<div class="subscribe-form">
+									<form action="#" method="post" class="subscribe_form">
+											<div class="email-news">
+													<input type="email" placeholder="Email" required="">
+											</div>
+											<div class="sub-news">
+													<input type="submit" value="subscribe">
+											</div>
+									</form>
+									<div class="clearfix"> </div>
+							</div>
+							<p>We respect your privacy.No spam ever!</p>
+					</div>
+					<!-- //newsletter ends here -->
+
+        <div class="cpy-right">
+            <p>© 2019 Rosewine. All rights reserved 
+            </p>
+        </div>
+    </div> -->
+		 <!-- //js -->
+		<!--search jQuery-->
+		<script src="/js/main.js"></script>
+		<!--search jQuery-->
+    <!-- dropdown nav -->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+		</script>
+			<script>
+				document.addEventListener("DOMContentLoaded",function(){
+				this.querySelector(".icon").addEventListener("click",function(){
+					let waitClass = "waiting",
+						runClass = "running",
+						cl = this.classList;
+
+					if (!cl.contains(waitClass) && !cl.contains(runClass)) {
+						cl.add(waitClass);
+						setTimeout(function(){
+							cl.remove(waitClass);
+							setTimeout(function(){
+								cl.add(runClass);
+								setTimeout(function(){
+									// cl.remove(runClass);
+								}, 4000);
+							}, 0);
+						}, 0);
+					}
+				});
+			});
+			</script>
+
+</body>
+
+</html>
+
+<!-- <script>
+		document.addEventListener("DOMContentLoaded",function(){
+		this.querySelector(".icon").addEventListener("click",function(){
+			let waitClass = "waiting",
+				runClass = "running",
+				cl = this.classList;
+
+			if (!cl.contains(waitClass) && !cl.contains(runClass)) {
+				cl.add(waitClass);
+				setTimeout(function(){
+					cl.remove(waitClass);
+					setTimeout(function(){
+						cl.add(runClass);
+						setTimeout(function(){
+							cl.remove(runClass);
+						}, 4000);
+					}, 200);
+				}, 1800);
+			}
+		});
+	});
+	</script> -->

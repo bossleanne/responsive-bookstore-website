@@ -1,0 +1,20 @@
+{
+    "name": "desoslide",
+    "version": "2.2.0",
+    "homepage": "https://github.com/sylouuu/desoslide",
+    "description": "Take control of your slideshow with this powerful jQuery plugin",
+    "keywords": [
+        "slider",
+        "slideshow",
+        "thumbnails"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "doc"
+    ],
+    "dependencies": {
+        "jquery": "~1.11.0",
+        "animate.css": "~3.1.0",
+        "magic": "~1.0.0"
+    }
+}

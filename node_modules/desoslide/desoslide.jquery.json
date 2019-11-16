@@ -1,0 +1,29 @@
+{
+    "name": "desoslide",
+    "title": "desoSlide",
+    "version": "2.2.0",
+    "description": "Take control of your slideshow with this powerful jQuery plugin",
+    "keywords": [
+        "slider",
+        "slideshow",
+        "thumbnails"
+    ],
+    "author": {
+        "name": "sylouuu",
+        "url": "http://sylouuu.github.io/"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/sylouuu/desoslide/blob/master/LICENSE.md"
+        }
+    ],
+    "bugs": "https://github.com/sylouuu/desoslide/issues",
+    "homepage": "http://sylouuu.github.io/desoslide",
+    "demo": "http://sylouuu.github.io/desoslide/doc/demo.html",
+    "docs": "http://sylouuu.github.io/desoslide/doc/",
+    "download": "https://github.com/sylouuu/desoslide/releases",
+    "dependencies": {
+        "jquery": ">=1.7"
+    }
+}

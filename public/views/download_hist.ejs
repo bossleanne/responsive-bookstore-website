@@ -1,0 +1,213 @@
+<% include header_1.ejs %>
+        <!-- //navbar ends here -->
+        <script type="text/javascript" src="/js/creditly_c.js"></script>
+    
+        <!-- <link href="css/card_style.css" rel="stylesheet" type="text/css" media="all" /> -->
+        <!-- <link rel="stylesheet" href="css/creditly_c.css" type="text/css" media="all" /> -->
+
+        <!-- banner -->
+        <div class="banner-bg-inner">
+            <!-- banner-text -->
+            <div class="banner-text-inner">
+                <div class="container">
+                    <h2 class="title-inner">
+                        world of reading
+                    </h2>
+
+                </div>
+            </div>
+            <!-- //banner-text -->
+        </div>
+        <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 10px 40px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+            }
+            
+            .button1 {
+                box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2), 0 6px 111px 0 rgba(0,0,0,0.19);
+            }
+            
+            
+        </style>
+        
+        <!--checkout-->
+        <div class="innerf-pages section">
+                <div class="container">
+                    <div class="privacy about">
+                        <h4 class="rad-txt">
+                            <span class="abtxt1">Purchase</span>
+                            <span class="abtext">History</span>
+                        </h4>
+                
+                        <div class="checkout-right">
+                            <h4>Your Purchase :
+                                <span><%= first_count %> Products</span>
+                            </h4>
+                            <table class="timetable_sub table-responsive">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Product Name</th>
+                                        <th>Author</th>
+                                        <th>Publisher</th>
+                                        <th>Purchase Date</th>
+                                        <th>Price</th>
+                                        <th>View the book</th>
+                                        <!-- put image in view the book -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <% if (book.length > 0) { %>
+                                            <% book.forEach((content) => { %>
+                                        <td class="invert"><%= content.title %></td>
+                                        <!-- <td class="invert">1</td> -->
+                                        <!-- <td class="invert-image"> -->
+                                            
+                                        </td>
+                                        <td class="invert"><%= content.author %></td>
+                                        <td class="invert"><%= content.publisher %></td>
+                                        
+                                        <td class="invert"><%= content.datetime %></td>
+                                        
+                                        <td class="invert">$<%= content.unit_price %></td>
+                                        <td class="invert">
+                                            <a href="shop.html/<%= book.ISBN13%>">
+                                                <img src="images/lib8.jpg" alt=" " class="img-responsive">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                <% } %> 
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="checkout-left">
+                            <div class="col-md-4 checkout-left-basket">
+                                <h4>Total spend</h4>
+                                <% if (book.length > 0) { %>
+                                        <% book.forEach((content) => { %>
+                                <ul>
+                                    <li><%= content.title %>
+                                        <!-- <i>- - - - - -</i> -->
+                                        <span>$<%= content.unit_price %></span>
+                                    </li>
+                                    <% }) %>
+                                <% } %> 
+                                <li>Total
+                                        <i>-</i>
+                                        <span>$<%= totalsum %></span>
+                                    </li>
+                                </ul>
+                                
+                            </div>
+                            <div class="col-md-8 address_form">
+                                <h4>Card Details</h4>
+                                <form action="cardsave" method="post" class="creditly-card-form agileinfo_form">
+                                        <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                                            <div class="credit-card-wrapper">
+                                                <div class="first-row form-group">
+                                                    <div class="controls">
+                                                        <label class="control-label">Card Number</label>
+                                                        <input class="number credit-card-number form-control" value= "<%=card_no%>" type="text" name="number"
+                                                               inputmode="numeric" autocomplete="cc-number" autocompletetype="cc-number" x-autocompletetype="cc-number"
+                                                               placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;">
+                                                    </div>
+                                                    <div class="controls">
+                                                        <label class="control-label">CVV</label>
+                                                        <input class="securitycode form-control" â·
+                                                               inputmode="numeric"
+                                                               type="text" value= "<%=CVV%>" name="securitycode"
+                                                               placeholder="&#149;&#149;&#149;">
+                                                    </div>
+                                                </div>
+                                                <div class="second-row form-group">
+                                                    <div class="controls">
+                                                        <label class="control-label">Name on Card</label>
+                                                        <input class="billing-address-name form-control"  value= "<%=holder_name%>" type="text" name="name" placeholder="John Smith">
+                                                    </div>
+                                                    <div class="controls">
+                                                        <label class="control-label">Expiration</label>
+                                                        <input class="expiration-month-and-year form-control" value= "<%=expiry%>" type="date" name="expiration" placeholder="YYYY-MM-YY">
+                                                    </div>
+                                                    <div class="controls">
+                                                            <label class="control-label">Type of card</label>
+                                                            <input class="billing-address-name form-control" type="text" value="<%=card_type%>" name="cardtype" placeholder="Visa/Master/Amex">
+                                                        </div>
+                                                </div>
+                                                <button class="button button1" type="submit"><span>Save Card Infomation</span></button>
+                                            </div>
+                                        </section>
+                                    </form>
+    
+                            </div>
+    
+                            <div class="clearfix"> </div>
+   
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+            <!--//checkout-->
+
+                <!-- newsletter -->
+                <div class="subscribe-main section-w3layouts text-center">
+                    <h4 class="rad-txt">
+                        <span class="abtxt1">keep yourself</span>
+                        <span class="abtext">updated</span>
+                    </h4>
+                    <h5>subscribe to our newsletter to stay up-to-date with our projects.</h5>
+                    <div class="subscribe-form">
+                        <form action="#" method="post" class="subscribe_form">
+                            <div class="email-news">
+                                <input type="email" placeholder="Email" required="">
+                            </div>
+                            <div class="sub-news">
+                                <input type="submit" value="subscribe">
+                            </div>
+                        </form>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <p>We respect your privacy.No spam ever!</p>
+                </div>
+                <!-- //newsletter ends here -->
+
+        <div class="cpy-right">
+            <p>© 2019 Rosewine. All rights reserved 
+            </p>
+        </div>
+    </div> -->
+     <!-- //js -->
+    <!-- dropdown nav -->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+    <!--search jQuery-->
+    <script src="/js/main.js"></script>
+    <!--search jQuery-->
+</body>
+
+</html>

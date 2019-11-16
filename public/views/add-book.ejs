@@ -1,0 +1,90 @@
+<% include partials/header.ejs %>
+
+    <div class="container">
+        <% if (message != '') { %>
+            <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="ISBN13" id="ISBN13" placeholder="ISBN13" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="title" id="title" placeholder="title" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="author" id="author" placeholder="author" required>
+                </div>
+                    
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="publisher" id="publisher" placeholder="publisher" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="language" id="language" placeholder="language" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="type" id="type" placeholder="type" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="description" id="description" placeholder="description" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="length" id="length" placeholder="length" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="file_size" id="file_size" placeholder="file_size" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="release_date" id="release_date" placeholder="release_date YYYY-mm-dd" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <!-- <input type="text" class="form-control" name="Genre_genre_id" id="Genre_genre_id" placeholder="Genre_genre_id" required> -->
+                    <select name="Genre_genre_id" id="Genre_genre_id" class="form-control form-control-lg" > 
+                            <!-- <option value="">Rating </option>  -->
+                            <% genre.forEach(function(book) { %>
+                                <option value="<%=  book.genre_id %>"><%= book.genre_description %></option>
+                                    <% }); %>
+                        </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="unit_price" id="unit_price" placeholder="unit_price" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <!-- <div class="form-group col-md-6">
+                    <input type="number" class="form-control" name="number" id="number" placeholder="Number" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <select id="position" name="position" class="form-control" required>
+                        <option selected disabled>Choose position</option>
+                        <option>Goalkeeper</option>
+                        <option>Defender</option>
+                        <option>Midfielder</option>
+                        <option>Forward</option>
+                    </select>
+                </div> -->
+                <div class="col-md-12">
+                    <label for="player-img"><b>Book Image</b></label><br>
+                    <input type="file" name="image" id="player-img" class="" >
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Add Book</button>
+            <br><br>
+            <a class="btn btn-primary float-right" href="/admin_booklist.html">Back to booklist page</a>
+            <!-- <input class="btn btn-primary float-right" type="button" href="/admin_booklist.html" value="Add to favorites"> -->
+        </form>
+    </div>
+</div>
+</body>
+</html>
