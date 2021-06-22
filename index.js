@@ -401,9 +401,7 @@ app.get('/sendme',function (req,res){
         res.redirect('/login.html');
       }
     });
-
    })
- 
 });
 
 
