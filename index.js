@@ -50,11 +50,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/',function (req,res) {
   let ratingSQL = "SELECT p.title, p.rating, p.no_of_downloads FROM product p ORDER BY p.rating DESC, p.no_of_downloads DESC LIMIT 5";
   let ratings = {};
-  // let ratingSQL = "SELECT p.title, p.rating, p.no_of_downloads FROM product p ORDER BY p.rating DESC, p.no_of_downloads DESC LIMIT 5";
   db.query(ratingSQL,function (err,rs) {
     ratings = rs;
-    // console.log('ratingsssssss',rs.RowDataPacket)
-    // console.log('ratings',rs[0].rating)
     let user = req.session.user;
     res.render('index.ejs', {
       ratings: ratings,
@@ -63,17 +60,6 @@ app.get('/',function (req,res) {
   });
   console.log("=========== Landing Page =======================")
 })
-
-// app.get('/register',function (req,res) {
-//   let user = {}
-//  res.render('register.ejs',{
-//     user:user,
-//    sign:0
-//  });
-// })
-
-
-
 
 //=========== Customer =======================
 app.use('/login.html', userRouter);
@@ -84,7 +70,6 @@ app.use('/shop.html',shopRouter);
 //=========== Download History =======================
 
 app.get('/download_his.html',async function (req,res) {
-  // const histSQL = "select * from OrderDetail where customer_email = '"+req.session.user+"'";
   const bookSQL = "SELECT * FROM orderdetail o INNER JOIN product p ON o.Product_ISBN13 = p.ISBN13 WHERE o.customer_email IN (SELECT c.email FROM myapp.customer c WHERE c.email = '"+req.session.user+"')";
   const countSQL = "SELECT COUNT(order_id) FROM myapp.orderdetail WHERE customer_email = '"+req.session.user+"'";
   const sumSQL = "SELECT SUM(unit_price) FROM myapp.Orderdetail WHERE customer_email = '"+req.session.user+"'";
@@ -105,7 +90,6 @@ app.get('/download_his.html',async function (req,res) {
     first_count = first_count['COUNT(order_id)'];
     let totalsum = sum[0];
     totalsum = totalsum['SUM(unit_price)'];
-    // if(sum=='underfine')
     if(cus[0]==undefined){
       console.log('cscscs',cus[0])
       res.render('download_his.ejs', {
@@ -152,16 +136,13 @@ app.use(fileUpload());
 //=========== Admin =======================
 
 app.get('/admin_login.html',function (req,res) {
-  // let user = req.session.user
   res.render('admin_login.ejs',{
-    // user,user,
     flag:0
   });
 })
 
 app.post('/admin_login', getLoginPage);
 
-// app.get('/admin_landing.html', getHomePage);
 app.get('/admin_landing.html',getHomePage);
 
 app.get('/admin_booklist.html', getbooklistPage);
@@ -177,23 +158,10 @@ app.post('/admin_add.html', addBook);
 app.post('/edit/:id', editBook);
 
 
-//=========== Unsubscription =======================
-// app.get('unsub',function(req,res){
-//   let updatesql = "update customer set subscribed = 0 where email = '"+req.session.user+"'";
-//   db.query(updatesql,(err,rs)=>{
-//     console.log(rs)
-//       // res.send("Unsubscribed Successful!")
-//   })
-// })
-// function myFunction(val){
-//   console.log(val)
-// }
 app.get('/unsub',function (req,res){
   let user = req.session.user;
   let updatesql = "update customer set subscribed = 0 where email = '"+req.session.user+"'";
   db.query(updatesql,function (err,rs) {
-    // console.log('product1',rs[0].password)
-      // console.log(req.body.email)
       res.redirect(url.format({
         pathname:"/login.html/personal",
         user:user,
@@ -375,36 +343,16 @@ app.post('/subscribe',async function (req,res){
       }
   });
 
-  // var transporter = nodemailer.createTransport(smtpConfig);
-  // console.log('Sending email...');
   let product = {}
   const productSQL = 'select * from orderdetail where Customer_email = ?'
-  // let user = req.session.user;
+
   let update = {}
   let updatesql = "update customer set subscribed = 1 where email = '"+req.session.user+"'";
   
-  // try {
-    // product = await queryAsync(productSQL, [req.session.user]);
-    // update = await queryAsync(updatesql);
   
-    // db.query(productSQL,[req.session.user],function (err,rs) {
-    //   product = rs
-    //   console.log('product',rs[0])
-    //   console.log('product',rs)
-    //   if(rs[0]==undefined){
-    //     res.render('login', {
-    //       user:user,
-    //       flag: 1,
-    //     });
-    //   }
-    //     // res.send('Download successful');
-    //     //can not just send success!!!!
-    //   // }
-    //  })
   const mailOptions = {
-    from: 'laurenwalkr@gmail.com', // sender address
+    from: '', // sender address
     to: req.body.email,
-    // to: 'sdqdjas@gmail.com', // list of receivers
     subject: 'Rosewine', // Subject line
     html: '<p>Thanks for your subscription --Rosewine</p>'// plain text body
   };
@@ -418,11 +366,7 @@ app.post('/subscribe',async function (req,res){
       res.redirect('/');
     }
   });
-  // } catch (err) {
-  //   console.log('SQL error', err);
-  //   res.status(500).send('Something went wrong');
-  // }
-  
+
 });
 
 
@@ -430,21 +374,19 @@ app.get('/sendme',function (req,res){
 
   var emailSQL = "select email,password from customer c where c.email = ?";
   db.query(emailSQL,[req.query.email],function (err,rs) {
-    // console.log('product1',rs[0].password)
-      // console.log(req.body.email)
     var transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       Port: 465,
       secure: true,
       auth: {
-            user: 'laurenwalkr@gmail.com',
-            pass: 'Y2bghc6q'
+            user: '',
+            pass: ''
         }
     });
     console.log('Sending email...');
     console.log('emial',req.query.email)
       const mailOptions = {
-      from: 'laurenwalkr@gmail.com', // sender address
+      from: '', // sender address
       to: req.query.email,
       subject: 'Rosewine', // Subject line
       text: "Here is your password:   "+rs[0].password
