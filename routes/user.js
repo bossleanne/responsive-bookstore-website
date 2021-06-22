@@ -27,8 +27,6 @@ router.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    // name:'id',
-    // maxAge: 20 * 1000,
     ttl: 30 * 10000,
     httpOnly: true,
     secure: false
@@ -56,9 +54,6 @@ router.get('/',function (req,res,next) {
       console.log("=========== Personal Detail Page =======================")
       console.log('session:personal',req.session.user)
     });
-    // res.redirect('/login.html/personal',{
-
-    // })
   }  
   else{res.render('login.ejs', {
     user:0,
@@ -66,8 +61,7 @@ router.get('/',function (req,res,next) {
   });
   }
 })
-// res.render('login', {flag: 0});
-// /login.html/register.html
+
 
 //===========Login session=======================
 router.post('/login', function(req, res,next) {
@@ -75,12 +69,10 @@ router.post('/login', function(req, res,next) {
    var email=req.body.email;
    var password=req.body.password;
    
-  //  var selectSQL = "select email,password from customer c where c.email = '"+email+"' and c.password = '"+password+"'";
    var selectSQL = "select email,password from customer c where c.email = ? and c.password = ?";
    connection.query(selectSQL,[email,password],function (err,rs) {
-     if (err) return (err);
-      let user = req.session.user
-      // console.log('asdcsdcdcds',rs)
+    if (err) return (err);
+    let user = req.session.user
     if(rs[0]==undefined){
       res.render('login', {
         user:user,
@@ -176,7 +168,6 @@ router.get('/register',function (req,res,next) {
 
 
 router.get('/log_out',function (req,res,next) {
-  //delete res.session.user 
   req.session.user = NULL;
 })
 
@@ -188,14 +179,11 @@ router.post('/save',function (req,res,next) {
   let lastlogin = new Date();
   let user = req.session.user
   const userinfosql = "UPDATE customer SET billing_address = ?, mailing_address = ?, birth_date = ?,last_login = ? WHERE email = ?"
-  // const userinfosql = "UPDATE customer SET billing_address = '123', mailing_address = '123', birth_date = '1992-01-01',last_login =NOW() WHERE email = 'Acosta@hotmail.com'"
   connection.query(userinfosql,[billing,mailing,birth,lastlogin,user],function (err,rs) {
-  // connection.query(userinfosql,function (err,rs) {
    if (err) {
      console.log(err);
      throw err;
    }
-  //  console.log('ok');
   res.redirect(url.format({
     pathname:"/",
     user:user
