@@ -26,7 +26,6 @@ app.use(session({
   cookie: {
 
     maxAge: 20 * 1000,
-    // ttl: 30 * 10000,
     httpOnly: true,
     secure: false
   }
@@ -60,7 +59,6 @@ router.get('/', async (req, res) => {
     console.log('SQL error', err);
     res.status(500).send('Something went wrong');
   }
-  // console
 });
 
 //=========== Single Product =======================
@@ -80,7 +78,6 @@ router.get('/:id',async function (req,res) {
     release = await queryAsync(releaseSQL);
     bankcard = await queryAsync(bankSQL);
     res.render('single_product.ejs', {
-      // sql: itemSQL,
       book: book,
       user:user,
       release:release,
@@ -90,44 +87,27 @@ router.get('/:id',async function (req,res) {
     console.log('SQL error', err);
     res.status(500).send('Something went wrong');
   }
-  // console.log('release',release)
 })
 
 //=========== Download Book =======================
 router.post('/download_book/:id',async function (req,res) {
   const bankSQL ="select Customer_email FROM CardInfo,Customer WHERE Customer.email = CardInfo.Customer_email and CardInfo.Customer_email = '"+req.session.user+"'";
   let bookID = req.params.id
-  // console.log('IDDDDD',bookID)
   const orderSQL = "INSERT INTO OrderDetail(customer_email, Product_ISBN13, unit_price, datetime) SELECT c.email, p.ISBN13, p.unit_price, now() FROM customer c, product p WHERE c.email ='"+req.session.user+"' AND p.ISBN13 = '"+bookID+"'";
   
-  // const orderSQL = "CALL SP_made_order(?,?)";
   let order = {}
   let user = req.session.user
 
   if(req.session.user){
     db.query(bankSQL, function (err,rs) {
-      // console.log('3',rs)
       if(rs==''){
         res.render('bank_card.ejs',{
               user:user    
             });
       }else{
           db.query(orderSQL,[req.session.user,bookID], function (err,rs) {
-            // console.log('3',rs)
-            //   setTimeout(function(){
-        //     // res.redirect(url.format({
-        //     //   pathname:"/",
-        //     //   user:user
-        //     //  }))
-        // }, 4000);
             res.redirect('/download_his.html')
           })
-        //   setTimeout(function(){
-        //     // res.redirect(url.format({
-        //     //   pathname:"/",
-        //     //   user:user
-        //     //  }))
-        // }, 4000);
       }
     })
   }
@@ -169,7 +149,6 @@ router.post('/cardinfo',function (req,res,next) {
       expiry:expiry,
       card_type:card_type
     })
-     //can not just send success!!!!
    }
   })
   console.log('session:cardinfo ',req.session.user)
@@ -177,23 +156,19 @@ router.post('/cardinfo',function (req,res,next) {
 })
 
 router.post('/cardsave',function (req,res,next) {
-  // let user = req.session.user
   var card_no=req.body.number
   var CVV=req.body.securitycode
   var holder_name=req.body.name
   var expiry=req.body.expiration;
   var card_type = req.body.cardtype
   let user = req.session.user
-  // var card ={card_no:card_no,holder_name:holder_name,card_type:card_type,CVV:CVV,expiry:expiry,customer_email:req.session.user};
-  // const userinfosql = "UPDATE customer SET ?"
+
   const userinfosql = "UPDATE cardinfo SET card_no = ?, holder_name = ?, card_type = ?,CVV =? ,expiry = ? WHERE customer_email = ?"
   connection.query(userinfosql,[card_no,holder_name,card_type,CVV,expiry,req.session.user],function (err,rs) {
-  // connection.query(userinfosql,function (err,rs) {
-   if (err) {
-     console.log(err);
-     throw err;
-   }
-  //  console.log('ok');
+  if (err) {
+    console.log(err);
+    throw err;
+  }
   res.redirect(url.format({
     pathname:"/download_his.html",
     user:user
