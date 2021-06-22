@@ -1,0 +1,4 @@
+SELECT * 
+FROM myapp.product;
+
+

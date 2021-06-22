@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign In form</title>
+<link rel="stylesheet" type = 'text/css' href="/css/admin.css">
+</head>
+	<body>
+
+	<div class="sign-up-form">
+		<!-- <img src="user.png"> -->
+		<h1> Rosewine Admin</h1>
+    <!-- <form id="loginform" class="form-horizontal" action="/adminlogin" method="post"> -->
+    <form id="RegisterForm" class="add-player-form" action="admin_login" method="post" >
+		  <input name="email" type="email" class="input-box" placeholder="Your Email Address" required>
+		  <input name="password"  type="password" class="input-box" placeholder="Your Password" required>
+			<button id="myBtn" type="submit" class="signup-btn">Sign In</button>
+			<div class="panel-title" id="showlogin" align="center"></div>
+    <!-- after click sign in will loking for user input and if user exist jump to dash board, 
+    if not alert window user not found -->
+		  <hr>
+      <p>Click here to go back to main page. <a href="/">Rosewine </a> </p>
+		</form>
+  </div>
+
+
+	<script>
+		const failure = "<%= flag %>"; 
+		if(failure == 1) document.getElementById("showlogin").innerText = 'Invalid login details,Are you the admin of Rosewine? ';
+</script>
+  
+	</body>
+</html>

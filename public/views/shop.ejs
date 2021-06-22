@@ -1,0 +1,255 @@
+<% include header.ejs %>
+
+<!-- //navbar ends here -->
+<!-- banner -->
+<div class="banner-bg-inner">
+	<!-- banner-text -->
+	<div class="banner-text-inner">
+		<div class="container">
+			<h2 class="title-inner">
+				world of reading
+			</h2>
+
+		</div>
+	</div>
+	<!-- //banner-text -->
+</div>
+<!-- //banner -->
+<!-- breadcrumbs -->
+<div class="crumbs text-center">
+	<div class="container">
+		<div class="row">
+			<ul class="btn-group btn-breadcrumb bc-list">
+				<li class="btn btn1">
+					<a href="/">
+						<i class="glyphicon glyphicon-home"></i>
+					</a>
+				</li>
+				<li class="btn btn2">
+					<a href="shop.html">product catalogue</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--//breadcrumbs ends here-->
+<!-- Shop -->
+<div class="innerf-pages section">
+	<div class="container-cart">
+		<!-- product left -->
+		<div class="side-bar col-md-3">
+			<!--preference -->
+			<form action="/search" method="get">
+				<div class="left-side">
+					<h3 class="shopf-sear-headits-sear-head">
+						Title</h3>
+					<ul>
+						<input type="text" class="form-control" name="Title" required>
+
+					</ul>
+				</div>
+
+				<div class="left-side">
+					<h3 class="shopf-sear-headits-sear-head">
+						Author</h3>
+					<ul>
+						<input type="text" class="form-control" name="Author" placeholder="" required>
+					</ul>
+				</div>
+				<!-- // preference -->
+
+				<div class="left-side">
+					<h3 class="shopf-sear-headits-sear-head"> Select Language </h3>
+					<select name="Language" class="form-control">
+						<option value="">Language</option>
+
+						<% languages.forEach(function(language) { %>
+						<option value="<%= language.language %>"><%= language.language %></option><br>
+						<% }); %>
+					</select>
+				</div>
+
+				<!-- searching -->
+				<div class="search-hotel">
+					<h3 class="shopf-sear-headits-sear-head">
+						<!-- <span>author</span> in focus</h3> -->
+
+						<!-- <input type="search" placeholder="search here" name="search" required=""> -->
+						<input class="testing" type="submit" name="search" value="Search">
+			</form>
+		</div>
+	</div>
+
+	<!-- product right -->
+	<div class="wrapper">
+		<div class="left-ads-display col-md-9">
+			<% if (books.length > 0) { %>
+			<% books.forEach((book) => { %>
+			<div class="col-lg-3 product-men">
+				<div class="product-chr-info chr">
+					<div class="caption">
+						<a href="/shop.html/<%= book.ISBN13%>">
+							<img src="images/lib8.jpg" alt="">
+							<h4><%= book.title %></h4>
+							<p><%= book.author %></p>
+							<p><%= book.language %></p>
+							<!-- <p>rating: <%= book.rating %></p> -->
+							<p>
+								<% if(book.rating ===5){ %>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<% } %>
+								<% if(book.rating ===4){ %>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star gray-star" aria-hidden="true"></span>
+								<% } %>
+								<% if(book.rating ===3){ %>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star gray-star" aria-hidden="true"></span>
+								<span class="fa fa-star gray-star" aria-hidden="true"></span>
+								<% } %>
+								<% if(book.rating ===2){ %>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star gray-star" aria-hidden="true"></span>
+								<span class="fa fa-star gray-star" aria-hidden="true"></span>
+								<span class="fa fa-star gray-star" aria-hidden="true"></span>
+								<% } %>
+								<% if(book.rating ===1){ %>
+								<span class="fa fa-star yellow-star" aria-hidden="true"></span>
+								<span class="fa fa-star gray-star" aria-hidden="true"></span>
+								<span class="fa fa-star gray-star" aria-hidden="true"></span>
+								<span class="fa fa-star gray-star" aria-hidden="true"></span>
+								<span class="fa fa-star gray-star" aria-hidden="true"></span>
+								<% } %>
+							</p>
+						</a>
+					</div>
+				</div>
+			</div>
+			<% }) %>
+			<% } %>
+		</div>
+	</div>
+
+</div>
+</div>
+<!--// Shop -->
+
+</div>
+<!-- //home -->
+<!-- js -->
+
+<script src="js/jquery-2.2.3.min.js"></script>
+<!--// Common js -->
+<!-- cart-js -->
+<script src="js/minicart.js"></script>
+<script>
+	chr.render();
+
+	chr.cart.on('new_checkout', function (evt) {
+		var items, len, i;
+
+		if (this.subtotal() > 0) {
+			items = this.items();
+
+			for (i = 0, len = items.length; i < len; i++) { }
+		}
+	});
+</script>
+<!-- dropdown nav -->
+<script>
+	$(document).ready(function () {
+		$(".dropdown").hover(
+			function () {
+				$('.dropdown-menu', this).stop(true, true).slideDown("fast");
+				$(this).toggleClass('open');
+			},
+			function () {
+				$('.dropdown-menu', this).stop(true, true).slideUp("fast");
+				$(this).toggleClass('open');
+			}
+		);
+	});
+</script>
+<!-- //dropdown nav -->
+<!--search jQuery-->
+<script src="js/main.js"></script>
+<!--search jQuery-->
+
+<!-- Scrolling Nav JavaScript -->
+<script src="js/scrolling-nav.js"></script>
+<!-- //fixed-scroll-nav-js -->
+<!--//scripts-->
+
+<script src="js/bootstrap.js"></script>
+<!-- start-smoth-scrolling -->
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+<script>
+	jQuery(document).ready(function ($) {
+		$(".scroll").click(function (event) {
+			event.preventDefault();
+			$('html,body').animate({
+				scrollTop: $(this.hash).offset().top
+			}, 1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- here stars scrolling icon -->
+<script>
+	$(document).ready(function () {
+
+		var defaults = {
+			containerID: 'toTop', // fading element id
+			containerHoverID: 'toTopHover', // fading element hover id
+			scrollSpeed: 1200,
+			easingType: 'linear'
+		};
+
+
+		$().UItoTop({
+			easingType: 'easeOutQuart'
+		});
+
+	});
+</script>
+<!-- //here ends scrolling icon -->
+<!-- smoothscroll -->
+<script src="js/SmoothScroll.min.js"></script>
+<!-- //smoothscroll -->
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		this.querySelector(".icon").addEventListener("click", function () {
+			let waitClass = "waiting",
+				runClass = "running",
+				cl = this.classList;
+
+			if (!cl.contains(waitClass) && !cl.contains(runClass)) {
+				cl.add(waitClass);
+				setTimeout(function () {
+					cl.remove(waitClass);
+					setTimeout(function () {
+						cl.add(runClass);
+						setTimeout(function () {
+							cl.remove(runClass);
+						}, 4000);
+					}, 200);
+				}, 1800);
+			}
+		});
+	});
+</script>
+
+</body>
+
+</html>

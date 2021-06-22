@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Rosewine Digital Store</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Rosewine, Digital Store,bookstore,cd store,book,cd" />
+ 
+
+    <!-- Custom Theme files -->
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <!-- shop css -->
+    <link href="css/shop.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/checkout.css" type="text/css" rel="stylesheet" media="all">
+    
+    <!-- shop dropdown animation -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!-- font-awesome icons -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <!-- logo -->
+    <link href="//fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+    <!-- titles -->
+    <link href="//fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+    <!-- body -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <!-- //online-fonts -->
+    <!-- <base href="/" />  -->
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <div id="home">
+        <!-- header -->
+        <!-- navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="main-nav">
+                <div class="container">
+
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Rosewine</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h1>
+                            <a class="navbar-brand" href="/">Rosewine</a>
+                        </h1>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse nav-right">
+                        <ul class="nav navbar-nav navbar-left cl-effect-15">
+                            <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                            <li class="hidden">
+                                <a class="page-scroll" href="#page-top"></a>
+                            </li>
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                         <!--    <li>
+                                <a href="about.html">about us</a>
+                            </li> -->
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">shop
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="shop.html">product catalogue</a>
+                                    </li>
+                                    <% if (user) { %>  
+                                    <li>
+                                            <!-- <a href="sh"></a> -->
+                                        <a href="download_his.html">History</a>
+                                    </li>
+                                    <% } %> 
+                                    <!-- <li> -->
+                                            <!-- <form action="/action_page.php" method="get"> -->
+                                                <!-- <a href="/login.html/log_out">Sign Out</a> -->
+                                                <!-- <input type="submit" value="Sign Out"> -->
+                                            <!-- </form> -->
+                                        <!-- <a href="shop.html">Sign Out</a> -->
+                                    <!-- </li> -->
+                                    
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="contact.html">Contact us</a>
+                            </li>
+
+
+                            <!-- loginpage -->
+                            <% if (user) { %>   
+                            <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown" ><span class="fa fa-user nav-icon" hidden="true"></span>
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="login.html"> User Profile </a>
+                                            <a href="logout.html">Sign Out</a> 
+                                        <% } else { %>
+                                        <li>
+                                            <a href="login.html" title="SignIn & SignUp">
+                                                <span class="fa fa-user nav-icon" hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <% } %>    
+                                        
+                                        </li>
+                                        <!-- <li>
+                                            <a href="shop.html">product catalog</a>
+                                        </li>
+                                        <li> -->
+                                                <!-- <a href="sh"></a> -->
+                                            <!-- <a href="download_his.html">Histroy</a>
+                                        </li> -->
+                                        <!-- <li> -->
+                                                <!-- <form action="/action_page.php" method="get"> -->
+                                                    <!-- <a href="/login.html/log_out">Sign Out</a> -->
+                                                    <!-- <input type="submit" value="Sign Out"> -->
+                                                <!-- </form> -->
+                                            <!-- <a href="shop.html">Sign Out</a> -->
+                                        <!-- </li> -->
+                                        
+                                    </ul>
+                                </li>
+                         
+
+                        </ul>
+                        
+                        <!-- search-bar -->
+                        <div class="search-bar-agileits">
+                            <div class="cd-main-header">
+                                <ul class="cd-header-buttons">
+                                    <li>
+                                        <a class="cd-search-trigger" href="#cd-search">
+                                            <span></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- cd-header-buttons -->
+                            </div>
+
+                            <div id="cd-search" class="cd-search">
+                                <form action="cdsearch" method="post">
+                                    <input name="Search" type="search" placeholder="Search by Title/Author/Language/Type">
+                                </form>
+                            </div>
+                       </div>
+                        
+                    </div>
+                    <!-- /.navbar-collapse -->
+                    
+                    <div class="clearfix"></div>
+                    
+                </div>
+                <!-- /.container -->
+                
+            </div>
+            
+        </nav>

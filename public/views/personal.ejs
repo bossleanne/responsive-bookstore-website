@@ -1,0 +1,179 @@
+<% include header_1.ejs %>
+        <div id="" style="margin-top:50px" class="mainbox loginbox">
+            <!-- <h4 class = "profile">Basic Profile</h4> -->
+            <h4 style="border: 1px" class = "profile">Basic Profile</h4>
+            <div class="panel panel-info">
+                    <!-- <div class="sign-in-page"> -->
+                        <img src="/images/female.png" alt="img"  class="center">
+                    <!-- </div> -->
+            </div>
+                  
+           
+                <!-- persona for rosewine -->
+                <div class="panel-body">
+                    <form class="form-horizontal" action="/login.html/save" method="post">
+                        
+                         <!-- email -->
+                         <div class="form-group">
+                                <label class="col-md-3 col-sm-3 col-xs-3 control-label">Email</label>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <!-- <input type="text" class="form-control" name="email" placeholder="" disabled="disabled" value=<%=email%> > -->
+                                    <input type="text" class="form-control" name="email" placeholder="" value=<%=email%> >
+                                </div>
+                            </div>
+                            
+                        <!-- first_name -->
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">First Name</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <input type="text" class="form-control" name="first_name" placeholder="" required="" value=<%=first_name%>>
+                            </div>
+                        </div>
+                        
+                        <!-- last_name -->
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">Last Name</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <input type="text" class="form-control" name="last_name" placeholder="" required="" value=<%=last_name%>>
+                            </div>
+                        </div>
+
+                        <!-- password -->
+                        <div class="form-group">
+                                <label class="col-md-3 col-sm-3 col-xs-3 control-label">Password</label>
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <input type="password" class="form-control" name="password" placeholder="" required="" value=<%=password%>>
+                                </div>
+                            </div>
+
+                        <!-- Birthday -->
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">Birthday</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <input type="date" class="form-control" name="birthday" placeholder="YYYY-MM-DD" required="" value=<%=birthday%>>
+                            </div>
+                        </div>
+                        
+                        <!-- billing address -->
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">Recipient billing address</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <input type="text" class="form-control" name="bill_add" id="ShippingAddress" placeholder="" required="" value=<%=bill_add%>>
+                            </div>
+                        </div>
+                        
+                        <!-- Mailing address -->
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">Recipient mailing address</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <input type="text" class="form-control" name="mail_add" id ="BillingAddress" placeholder="" required="">
+                                <br>
+                                <input type="checkbox" onclick="SetMilling(this.checked);"/> Same as Billing Address
+                                <% if (sub) { %>  
+                                    <a href="unsub" name="unsub">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; Unsubscribe from this list</ a>
+                                <% }else{ %>
+                                    <a name="unsub">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; Unsubscribed</ a>
+                                <% } %>
+
+                               
+                                    <!-- <p id="demo" align="left" name="unsub" onclick="myFunction(this.value)">Unsubscribe from this list</p> -->
+
+                                    <script>
+                                    function myFunction(value) {
+                                        console.log(value),
+                                      document.getElementById("demo").innerHTML = "Unsubscribe Successful";
+                                    }
+                                    </script>
+                                <br>
+                                <br>
+                                <p><input id="btn-save" class="myButton" type="submit" value="Save"/> </p>
+                                    <!-- <input id="opt1" type="checkbox" name="check1"> Same as Billing Address <br> -->
+                                
+                            </div>
+                        </div>
+
+
+                         
+                        
+
+
+                        <!-- save profile -->
+                        <!-- <div class="form-group"> -->
+                            <!-- Button rosewine -->
+                            <!-- <div class="sav-buttom"> -->
+                                <!-- <p><input id="btn-save" class="myButton" type="submit" value="Save"/> </p> -->
+                                <!-- <a href="#" class="myButton">light red</a> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
+                        <br><br><br><br><br<br><br>
+                        
+                    </form>
+                                
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//profile editing end here-->
+
+     <!-- footer -->
+    <div class="container"> 
+        <!-- newsletter -->
+        <div class="subscribe-main section-w3layouts text-center">
+            <h4 class="rad-txt">
+                <span class="abtxt1">keep yourself</span>
+                <span class="abtext">updated</span>
+            </h4>
+            <h5>subscribe to our newsletter to stay up-to-date with our projects.</h5>
+            <div class="subscribe-form">
+                <form action="#" method="post" class="subscribe_form">
+                    <div class="email-news">
+                        <input type="email" placeholder="Email" required="">
+                    </div>
+                    <div class="sub-news">
+                        <input type="submit" value="subscribe">
+                    </div>
+                </form>
+                <div class="clearfix"> </div>
+            </div>
+            <p>We respect your privacy.No spam ever!</p>
+        </div>
+        <!-- //newsletter ends here -->
+
+        <div class="cpy-right">
+            <p>© 2019 Rosewine. All rights reserved 
+            </p>
+        </div>
+    </div> 
+     <!--search jQuery-->
+     <script src="/js/main.js"></script>
+     <!--search jQuery-->
+     <!-- //js -->
+     <script type="text/javascript">  
+  
+        function SetMilling(checked) {  
+            if (checked) {  
+                    document.getElementById('BillingAddress').value = document.getElementById('ShippingAddress').value;     
+            } else {  
+                    document.getElementById('BillingAddress').value = '';    
+            }  
+        }  
+          
+        </script>
+    <!-- dropdown nav -->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title><%= title %></title>
+</head>
+<style>
+    .table-wrapper {
+        margin-top: 50px;
+    }
+
+    .player-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .add-player-form {
+        margin-top: 50px;
+    }
+</style>
+<body>
+
+<div class="container">
+    <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+
+    <% if (products) { %>
+        <form class="add-player-form" action="" method="post" >
+            <div class="form-row">
+
+                <div class="form-group col-md-4">
+                    <label for="ISBN13">ISBN13</label>
+                    <input type="text" class="form-control" name="ISBN13" id="ISBN13" value="<%= products.ISBN13 %>" required disabled title="ISBN13 cannot be edited.">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="title">Title</label> 
+                    <input type="text" class="form-control" name="title" id="title" value="<%= products.title %>" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="author">Author</label> 
+                    <input type="text" class="form-control" name="author" id="author" value="<%= products.author %>" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="publisher">Publisher</label> 
+                    <input type="text" class="form-control" name="publisher" id="publisher" value="<%= products.publisher %>" required>
+                </div>
+                    
+                <div class="form-group col-md-4">
+                    <label for="language">Language</label>
+                    <input type="text" class="form-control" name="language" id="language" value="<%= products.language %>" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="unit_price">Unit_price</label>
+                    <input type="text" class="form-control" name="unit_price" id="unit_price" value="<%= products.unit_price %>" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success float-right">Update Book</button>
+            <button class="btn btn-success" onclick="window.location='http://localhost/admin_booklist.html';">Back to Booklist page</button>
+        </form>
+        <!-- <button type="submit" class="btn btn-success float-right">Update Book</button> -->
+    <% } else { %>
+        <p class="text-center">Book Not Found. Go <a href="/admin_add.html">here</a> to add book.</p>
+    <% } %>
+    
+</div>
+<script>
+    function visitPage(){
+        window.location='http://localhost/admin_booklist.html';
+    }
+</script>
+    <!-- <button onclick="visitPage();">Visit Page Now</button> -->
+</body>
+</html>

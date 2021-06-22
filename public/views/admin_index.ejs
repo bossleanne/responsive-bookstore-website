@@ -1,0 +1,72 @@
+<% include partials/header.ejs %>
+<title>Rosewine Digital Store</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Rosewine, Digital Store,bookstore,cd store,book,cd" />
+ 
+
+    <!-- Custom Theme files -->
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <!-- shop css -->
+    <link href="css/shop.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+
+    <!-- shop dropdown animation -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!-- font-awesome icons -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <!-- logo -->
+    <link href="//fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+    <!-- titles -->
+    <link href="//fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
+    <!-- body -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <!-- //online-fonts -->
+</head>
+    <div class="table-wrapper">
+        <% if (products.length > 0) {%>
+        
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ISBN13</th>
+                     <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Publisher</th>
+                        <th scope="col">Language</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach((item, index) => { %>
+                        
+                        <tr>
+                            <th scope="row"><%= item.ISBN13 %></th>
+                            <td><%= item.title %></td>
+                            <td><%= item.author %></td>
+                            <td><%= item.publisher %></td>
+                            <td><%= item.language %></td>
+                            <td>$<%= item.unit_price %></td>
+                            <td>
+                                <!-- <a href="/shop.html/<%= item.ISBN13%>"></a> -->
+                                <a href="/shop.html/<%= item.ISBN13%>" target="_blank" rel="noopener" class="btn">View</a>
+                                <a href="/edit/<%= item.ISBN13%>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                                <a href="/delete/<%= item.ISBN13%>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No book found. Go <a href="/admin_add.html" >here</a> to add book.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
