@@ -338,8 +338,8 @@ app.post('/subscribe',async function (req,res){
     Port: 465,
     secure: true,
     auth: {
-          user: 'laurenwalkr@gmail.com',
-          pass: 'Y2bghc6q'
+          user: '',
+          pass: ''
       }
   });
 
