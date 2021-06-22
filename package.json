@@ -16,7 +16,7 @@
     "connect-redis": "^4.0.3",
     "cookie-parser": "^1.4.4",
     "css-star-rating": "^1.2.4",
-    "date-and-time": "^0.10.0",
+    "date-and-time": "^0.14.2",
     "dateformat": "^3.0.3",
     "desoslide": "^2.2.0",
     "ejs": "^2.7.1",
